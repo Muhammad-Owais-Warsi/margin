@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22222B"/>
+      <stop offset="1" stop-color="#14141A"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#bg)"/>
+  <!-- text lines on the page -->
+  <g stroke="#EDEBE6" stroke-width="9" stroke-linecap="round">
+    <line x1="24" y1="38" x2="68" y2="38"/>
+    <line x1="24" y1="64" x2="62" y2="64"/>
+    <line x1="24" y1="90" x2="68" y2="90"/>
+  </g>
+  <!-- the margin rule -->
+  <line x1="82" y1="20" x2="82" y2="108" stroke="#FF6B4A" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+  <!-- the note jotted in the margin -->
+  <line x1="96" y1="64" x2="106" y2="64" stroke="#FF6B4A" stroke-width="9" stroke-linecap="round"/>
+</svg>

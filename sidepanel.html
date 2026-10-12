@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Margin</title>
+<link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+<aside id="sidebar">
+  <button id="btnNew" title="New note">+</button>
+  <div id="noteList"></div>
+  <div class="side-foot">
+    <button id="btnExport" title="Download backup file">E</button>
+    <button id="btnImport" title="Load backup file">L</button>
+  </div>
+  <input id="fileInput" type="file" accept=".json,application/json" hidden />
+</aside>
+<textarea id="content" placeholder="Just write…" spellcheck="true"></textarea>
+<script src="sidepanel.js"></script>
+</body>
+</html>
