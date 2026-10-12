@@ -1,8 +1,12 @@
+<div align="center">
+
 <img width="2800" height="1120" alt="margin-header" src="https://github.com/user-attachments/assets/e8bdb66c-a804-4c2e-8b98-93bed423dafd" />
 
 # Margin
 
 Minimal sidebar notes for Chrome. Just write.
+
+</div>
 
 ## Install
 
