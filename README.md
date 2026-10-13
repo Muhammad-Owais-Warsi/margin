@@ -22,3 +22,12 @@ Minimal sidebar notes for Chrome. Just write.
 - `I` — import a backup (only Margin backup files are accepted)
 
 Notes autosave locally in your browser. Nothing leaves your machine.
+
+## Troubleshoot
+
+**Shortcut doesn't open/close the sidebar?**
+
+1. Open `chrome://extensions/shortcuts`
+2. Find **Margin → Open / close Margin sidebar**
+3. If the box is empty (another extension claimed the combo), click it and press `Ctrl+Shift+Y` — or any combo you like
+4. Test on a normal page — shortcuts don't work on `chrome://` pages or the Web Store
