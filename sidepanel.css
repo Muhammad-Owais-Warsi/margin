@@ -50,3 +50,4 @@ body {
   font-size: 12px; font-weight: 700; line-height: 1;
 }
 .side-foot button:hover { border-color: var(--accent); color: var(--accent); }
+.side-foot button.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }

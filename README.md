@@ -20,6 +20,7 @@ Minimal sidebar notes for Chrome. Just write.
 - `+` — new note, click a number to switch, right-click it to delete
 - `E` — download backup (`margin-backup-*.json`)
 - `I` — import a backup (only Margin backup files are accepted)
+- `✂` — Clip mode: selected text anywhere auto-saves to the current note with its source
 
 Notes autosave locally in your browser. Nothing leaves your machine.
 

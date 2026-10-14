@@ -4,6 +4,7 @@ const content = document.getElementById('content');
 const btnNew = document.getElementById('btnNew');
 const btnExport = document.getElementById('btnExport');
 const btnImport = document.getElementById('btnImport');
+const btnClip = document.getElementById('btnClip');
 const fileInput = document.getElementById('fileInput');
 
 let notes = [];
@@ -95,10 +96,25 @@ content.addEventListener('input', () => {
 btnNew.addEventListener('click', newNote);
 
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area !== 'local' || !changes.notes) return;
+  if (area !== 'local') return;
+  if (changes.clipMode) syncClipBtn(!!changes.clipMode.newValue);
+  if (!changes.notes) return;
   notes = changes.notes.newValue || [];
   if (!notes.find((n) => n.id === activeId)) activeId = notes[0]?.id || null;
-  render();
+  const n = active();
+  if (document.activeElement === content && n) {
+    // a clip landed while typing: merge it in without moving the caret
+    const s = content.selectionStart ?? content.value.length;
+    const e = content.selectionEnd ?? s;
+    const atEnd = s === content.value.length;
+    content.value = n.content || '';
+    try {
+      if (atEnd) content.setSelectionRange(content.value.length, content.value.length);
+      else content.setSelectionRange(Math.min(s, content.value.length), Math.min(e, content.value.length));
+    } catch { /* ignore */ }
+  } else {
+    render();
+  }
 });
 
 chrome.runtime.onMessage.addListener((msg) => {
@@ -162,4 +178,20 @@ function badFile() {
   alert('Not a Margin backup file. Only files exported by Margin (margin-backup-*.json) can be loaded.');
 }
 
+/* ---------- Clip mode: selections anywhere auto-save to the current note ---------- */
+async function syncClipBtn(on) {
+  if (on === undefined) ({ clipMode: on } = await chrome.storage.local.get('clipMode'));
+  btnClip.classList.toggle('on', !!on);
+  btnClip.title = on
+    ? 'Clip mode ON — selected text auto-saves here (click to stop)'
+    : 'Clip mode: auto-save selected text';
+}
+
+btnClip.addEventListener('click', async () => {
+  const { clipMode } = await chrome.storage.local.get('clipMode');
+  await chrome.storage.local.set({ clipMode: !clipMode });
+  syncClipBtn(!clipMode);
+});
+
 load();
+syncClipBtn();
